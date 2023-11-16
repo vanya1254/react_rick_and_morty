@@ -1,0 +1,13 @@
+.circle {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 2px;
+
+  width: 8px;
+  height: 8px;
+
+  background: grey;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 50px;
+}
