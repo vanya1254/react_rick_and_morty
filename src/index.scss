@@ -1,6 +1,4 @@
-$mainColor: rgb(32, 32, 32);
-$secondColor: #019c2b;
-$textColor: #fff;
+@import "./scss/variables";
 
 *,
 *::after,
@@ -37,69 +35,6 @@ input[type="search"]:focus {
   outline: inherit;
 }
 
-.header {
-  padding: 10px 20px;
-  background-color: $mainColor;
-
-  &__nav {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-
-    &__form {
-      width: 100%;
-      padding: 0px 30px;
-
-      display: flex;
-      align-items: center;
-      gap: 0;
-      flex-wrap: nowrap;
-      max-width: 500px;
-      overflow: hidden;
-    }
-
-    &__btn {
-      width: 10%;
-      min-width: 1.75rem;
-      height: 1.75rem;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: none;
-      border-radius: 8px;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-
-      background-color: $secondColor;
-    }
-
-    &__search {
-      width: 90%;
-      padding-left: 6px;
-      height: 1.75rem;
-
-      border: none;
-      border-radius: 8px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    ul {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    &__link {
-      font-size: 1rem;
-      font-weight: 700;
-    }
-  }
-}
-
 .layout__main {
   .top {
     &__wrapper {
@@ -109,12 +44,41 @@ input[type="search"]:focus {
 
       position: relative;
       height: calc(50vh - 60px);
+
+      @media (max-width: 1300px) {
+        height: calc(50vh - 120px);
+      }
+      @media (max-width: 1152px) {
+        height: calc(50vh - 240px);
+      }
+      @media (max-width: 852px) {
+        height: calc(50vh - 360px);
+      }
+      @media (max-width: 552px) {
+        height: calc(50vh - 480px);
+      }
     }
 
     &__title {
       font-size: 4.5rem;
       z-index: 1;
       color: $textColor;
+
+      @media (max-width: 1152px) {
+        font-size: 3.5rem;
+      }
+      @media (max-width: 852px) {
+        font-size: 2.5rem;
+      }
+      @media (max-width: 652px) {
+        font-size: 2rem;
+      }
+      @media (max-width: 552px) {
+        font-size: 1.75rem;
+      }
+      @media (max-width: 432px) {
+        font-size: 1.3rem;
+      }
     }
 
     &-img {
