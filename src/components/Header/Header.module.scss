@@ -10,46 +10,6 @@
     align-items: center;
     justify-content: space-between;
 
-    &__form {
-      width: 100%;
-      padding: 0px 30px;
-
-      display: flex;
-      align-items: center;
-      gap: 0;
-      flex-wrap: nowrap;
-      max-width: 500px;
-      overflow: hidden;
-    }
-
-    &__btn {
-      width: 10%;
-      min-width: 1.75rem;
-      height: 1.75rem;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: none;
-      border-radius: 8px;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-
-      background-color: $secondColor;
-    }
-
-    &__search {
-      width: 90%;
-      padding-left: 6px;
-      height: 1.75rem;
-
-      border: none;
-      border-radius: 8px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
     ul {
       display: flex;
       align-items: center;
