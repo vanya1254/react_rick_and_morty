@@ -25,6 +25,11 @@ body {
 a {
   text-decoration: none;
   color: $textColor;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: $secondColor;
+  }
 }
 
 li {
@@ -109,18 +114,20 @@ input[type="search"]:focus {
       padding: 4.5rem 0px;
       min-height: calc(50vh - 60px);
 
-      background-color: #d3dae0;
+      background-color: $wrapperColor;
     }
 
     &__inner {
       display: flex;
-      -webkit-box-pack: center;
-      justify-content: center;
-      -webkit-box-align: center;
       align-items: center;
-      flex-wrap: wrap;
-      max-width: 1920px;
-      gap: 20px;
+      flex-direction: column;
+      gap: 40px;
+
+      max-width: 2220px;
+
+      @media (max-width: 2559px) {
+        max-width: 1920px;
+      }
     }
   }
 }

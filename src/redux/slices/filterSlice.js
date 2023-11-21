@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  curPage: "",
+  curPage: 1,
 };
 
 export const filterSlice = createSlice({
