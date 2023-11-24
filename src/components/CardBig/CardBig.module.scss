@@ -1,0 +1,75 @@
+@import "../../scss/variables";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  padding: 60px;
+  background-color: $cardColor;
+  border-radius: 60px;
+
+  &__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+
+      .section {
+        width: 284px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 1px;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+
+    width: 100%;
+  }
+
+  &__episodes,
+  &__episode {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+
+      gap: 1px;
+    }
+  }
+
+  &__episode {
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: 10px;
+  }
+  &__subtitle {
+    margin-bottom: 24px;
+  }
+
+  .textGray {
+    font-size: 0.9rem;
+    color: rgb(158, 158, 158);
+  }
+
+  .active {
+    color: $secondColor;
+  }
+}

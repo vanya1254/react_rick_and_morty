@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
-import axios from "axios";
+import React from "react";
 import qs from "qs";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { setCurPage } from "../redux/slices/filterSlice";
-import { setCards } from "../redux/slices/cardsSlice";
-
-import { SearchContext } from "../context";
+import { setCurPage, filterSelector } from "../redux/slices/filterSlice";
+import { fetchCards, cardsSelector } from "../redux/slices/cardsSlice";
 
 import { Cards } from "../components/Cards";
 import { Pagination } from "../components/Pagination";
@@ -19,13 +16,10 @@ export const Home = () => {
   const isMounted = React.useRef(false);
 
   //cur === current
-  const { curPage } = useSelector((state) => state.filters);
+  const { curPage, searchValue } = useSelector(filterSelector);
+  const { pagesCount } = useSelector(cardsSelector);
 
-  const { searchValue } = useContext(SearchContext);
-
-  const [pagesCount, setPagesCount] = React.useState(1);
-
-  const fetchCards = () => {
+  const getCards = () => {
     const filters = [
       searchValue ? `name=${searchValue.toLowerCase().replace(" ", "&")}` : "",
       curPage > 0 ? `page=${curPage}` : "",
@@ -35,45 +29,21 @@ export const Home = () => {
       .filter((filter) => filter)
       .map((filter, id) => (id === 0 ? `?${filter}` : `&${filter}`));
 
-    try {
-      axios
-        .get(
-          `https://rickandmortyapi.com/api/character/${activeFilters.join("")}`
-        )
-        .then((res) => {
-          dispatch(setCards(res.data.results));
-          setPagesCount(res.data.info.pages);
-        })
-        .catch(function (error) {
-          //TODO whatif err
-          if (error.response) {
-            //not found
-            dispatch(setCards([]));
-
-            console.log(error.response.data);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log("Error", error.message);
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(fetchCards({ activeFilters: activeFilters.join("") }));
   };
 
   React.useEffect(() => {
     if (isMounted.current) {
       const querryString = qs.stringify({
         page: curPage,
-        // title: `*${searchValue.toLowerCase()}*`,
+        title: `*${searchValue.toLowerCase()}*`,
       });
 
       navigate(`?${querryString}`);
     }
 
     isMounted.current = true;
-  }, [curPage]);
+  }, [curPage, searchValue]);
 
   React.useEffect(() => {
     if (window.location.search) {
@@ -89,46 +59,11 @@ export const Home = () => {
     window.scrollTo(0, 0);
 
     if (!isSearch.current) {
-      fetchCards();
+      getCards();
     }
 
     isSearch.current = false;
-  }, [dispatch, setPagesCount, curPage, setCards, searchValue]);
-
-  // React.useEffect(() => {
-  //   const filters = [
-  //     searchValue ? `name=${searchValue.toLowerCase().replace(" ", "&")}` : "",
-  //   ];
-
-  //   // const activeFilters = filters
-  //   //   .filter((filter) => filter)
-  //   //   .map((filter, id) => (id === 0 ? `?${filter}` : `&${filter}`));
-  //   try {
-  //     axios
-  //       .get(
-  //         `https://rickandmortyapi.com/api/character?page=${curPage}&${filters}`
-  //       )
-  //       .then((res) => {
-  //         dispatch(setCards(res.data.results));
-  //         setPagesCount(res.data.info.pages);
-  //       })
-  //       .catch(function (error) {
-  //         //TODO whatif err
-  //         if (error.response) {
-  //           //not found
-  //           dispatch(setCards([]));
-
-  //           console.log(error.response.data);
-  //         } else if (error.request) {
-  //           console.log(error.request);
-  //         } else {
-  //           console.log("Error", error.message);
-  //         }
-  //       });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [dispatch, setPagesCount, curPage, setCards, searchValue]);
+  }, [dispatch, curPage, fetchCards, searchValue]);
 
   return (
     <>

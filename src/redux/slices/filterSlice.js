@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   curPage: 1,
+  searchValue: "",
 };
 
 export const filterSlice = createSlice({
@@ -11,9 +12,14 @@ export const filterSlice = createSlice({
     setCurPage(state, action) {
       state.curPage = action.payload;
     },
+    setSearchValue(state, action) {
+      state.searchValue = action.payload;
+    },
   },
 });
 
-export const { setCurPage } = filterSlice.actions;
+export const filterSelector = (state) => state.filters;
+
+export const { setCurPage, setSearchValue } = filterSlice.actions;
 
 export default filterSlice.reducer;

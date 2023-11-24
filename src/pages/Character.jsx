@@ -1,45 +1,58 @@
 import React from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { setCardProp } from "../redux/slices/cardSlice";
+import { fetchCardById, cardSelector } from "../redux/slices/cardSlice";
+import {
+  episodesSelector,
+  fetchEpisodesByUrl,
+} from "../redux/slices/episodesSlice";
+import { fetchEpisodeByUrl } from "../redux/slices/episodeSlice";
 
 import { CardBig } from "../components/CardBig";
 
 export const Character = () => {
   const dispatch = useDispatch();
-
   const location = useLocation();
   const { id } = location.state;
 
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
+
+  const { episode } = useSelector(cardSelector);
+  const { status } = useSelector(episodesSelector);
+
+  const getCardById = () => {
+    dispatch(fetchCardById({ id }));
+  };
+
+  const getEpisodesByUrl = () => {
+    dispatch(fetchEpisodesByUrl({ episode }));
+  };
+
   React.useEffect(() => {
-    try {
-      axios
-        .get(`https://rickandmortyapi.com/api/character/${id}`)
-        .then((res) => {
-          dispatch(setCardProp(res.data));
-        })
-        .catch(function (error) {
-          //TODO whatif err
-          if (error.response) {
-            //not found
-            console.log(error.response.data);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log("Error", error.message);
-          }
-        });
-    } catch (error) {
-      console.log(error);
+    window.scrollTo(0, 0);
+
+    if (!isSearch.current) {
+      getCardById();
     }
-  }, [dispatch]);
+
+    isSearch.current = false;
+    isMounted.current = true;
+  }, [dispatch, fetchCardById, id]);
+
+  React.useEffect(() => {
+    if (!isMounted.current) {
+      getEpisodesByUrl();
+    }
+
+    isMounted.current = false;
+  }, [dispatch, fetchEpisodesByUrl, episode]);
 
   return (
     <section className="bottom__wrapper">
       <div className="bottom__inner">
-        <CardBig />
+        {status === "fulfilled" ? <CardBig /> : ""}
       </div>
     </section>
   );

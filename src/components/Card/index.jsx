@@ -28,7 +28,9 @@ export const Card = ({
         <div className={styles.section}>
           <Link
             to="/character"
-            state={{ id }}
+            state={{
+              id,
+            }}
             className={styles.root__title_link}
           >
             <h2>{name}</h2>
@@ -50,8 +52,7 @@ export const Card = ({
         <div className={styles.section}>
           <span className={styles.textGray}>First seen in:</span>
           <a href={episode[0]} className={styles.root_link}>
-            {/* {episode[0].replace("https://rickandmortyapi.com/api/episode/", "")} */}
-            ff
+            {origin.name}
           </a>
         </div>
       </div>
