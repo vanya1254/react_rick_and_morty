@@ -24,7 +24,7 @@ export const episodesSlice = createSlice({
   name: "episodes",
   initialState,
   reducers: {
-    addToEpisodeList(state, action) {
+    addToEpisodesList(state, action) {
       state.episodesList.push(action.payload);
     },
     setCurEpisode(state, action) {
@@ -50,6 +50,6 @@ export const episodesSlice = createSlice({
 
 export const episodesSelector = (state) => state.episodes;
 
-export const { addToEpisodeList, setCurEpisode } = episodesSlice.actions;
+export const { addToEpisodesList, setCurEpisode } = episodesSlice.actions;
 
 export default episodesSlice.reducer;

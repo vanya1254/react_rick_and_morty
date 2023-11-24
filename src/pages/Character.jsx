@@ -7,7 +7,10 @@ import {
   episodesSelector,
   fetchEpisodesByUrl,
 } from "../redux/slices/episodesSlice";
-import { fetchEpisodeByUrl } from "../redux/slices/episodeSlice";
+import {
+  fetchCharactersByUrl,
+  charactersSelector,
+} from "../redux/slices/charactersSlice";
 
 import { CardBig } from "../components/CardBig";
 
@@ -16,11 +19,13 @@ export const Character = () => {
   const location = useLocation();
   const { id } = location.state;
 
-  const isSearch = React.useRef(false);
-  const isMounted = React.useRef(false);
+  const isCard = React.useRef(false);
+  const isEpisodes = React.useRef(false);
+  const isCharacters = React.useRef(false);
 
   const { episode } = useSelector(cardSelector);
-  const { status } = useSelector(episodesSelector);
+  const { curEpisode, episodesList } = useSelector(episodesSelector);
+  const { status } = useSelector(charactersSelector);
 
   const getCardById = () => {
     dispatch(fetchCardById({ id }));
@@ -30,24 +35,38 @@ export const Character = () => {
     dispatch(fetchEpisodesByUrl({ episode }));
   };
 
+  const getCharactersByUrl = () => {
+    const characters = episodesList[curEpisode].characters;
+    dispatch(fetchCharactersByUrl({ characters }));
+  };
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (!isSearch.current) {
+    if (!isCard.current) {
       getCardById();
     }
 
-    isSearch.current = false;
-    isMounted.current = true;
+    isCard.current = false;
+    isEpisodes.current = true;
   }, [dispatch, fetchCardById, id]);
 
   React.useEffect(() => {
-    if (!isMounted.current) {
+    if (!isEpisodes.current) {
       getEpisodesByUrl();
     }
 
-    isMounted.current = false;
+    isEpisodes.current = false;
+    isCharacters.current = true;
   }, [dispatch, fetchEpisodesByUrl, episode]);
+
+  React.useEffect(() => {
+    if (!isCharacters.current) {
+      getCharactersByUrl();
+    }
+
+    isCharacters.current = false;
+  }, [dispatch, fetchCharactersByUrl, episodesList]);
 
   return (
     <section className="bottom__wrapper">

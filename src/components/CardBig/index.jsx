@@ -11,6 +11,7 @@ import {
   episodesSelector,
   setCurEpisode,
 } from "../../redux/slices/episodesSlice";
+import { charactersSelector } from "../../redux/slices/charactersSlice";
 
 export const CardBig = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,9 @@ export const CardBig = () => {
 
   const classNames = require("classnames");
   const { episodesList, curEpisode } = useSelector(episodesSelector);
-  console.log(episodesList);
-  const characters = [{ name: 1 }, { name: 2 }, { name: 3 }];
+  const { charactersList } = useSelector(charactersSelector);
+
+  // const charactersList = [{ name: 1 }, { name: 2 }, { name: 3 }];
 
   return (
     <div className={styles.root}>
@@ -49,7 +51,7 @@ export const CardBig = () => {
           <ul>
             {episodesList.map((episode, i) => (
               <li
-                className={curEpisode === i ? `${styles.root.active}` : ""}
+                className={curEpisode === i ? `${styles.root__active}` : ""}
                 key={episode.id}
                 onClick={() => dispatch(setCurEpisode(i))}
               >
@@ -68,7 +70,7 @@ export const CardBig = () => {
           <article className={styles.root__episode__character}>
             <h3 className={styles.root__title}>Characters</h3>
             <ul>
-              {characters.map((character, id) => (
+              {charactersList.map((character, id) => (
                 <li key={id}>{character.name}</li>
               ))}
             </ul>
