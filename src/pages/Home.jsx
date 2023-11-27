@@ -36,7 +36,7 @@ export const Home = () => {
     if (isMounted.current) {
       const querryString = qs.stringify({
         page: curPage,
-        title: `*${searchValue.toLowerCase()}*`,
+        name: `*${searchValue.toLowerCase()}*`,
       });
 
       navigate(`?${querryString}`);

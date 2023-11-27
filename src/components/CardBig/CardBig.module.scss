@@ -3,38 +3,92 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 40px;
 
-  padding: 60px 10vw;
+  padding: 60px;
+  padding-bottom: 80px;
   background-color: $cardColor;
-  border-radius: 60px;
+  border-radius: 120px;
+
+  @media (max-width: 2160px) {
+    border-radius: 105px;
+  }
+  @media (max-width: 1670px) {
+    border-radius: 90px;
+  }
 
   &__card {
+    position: relative;
+
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: end;
+
+    width: 60vw;
+    height: 520px;
+
+    @media (max-width: 2160px) {
+      height: 390px;
+    }
+    @media (max-width: 1670px) {
+      height: 260px;
+    }
+
+    &__component {
+      transform: scale(2);
+      position: absolute;
+      top: 90px;
+      left: 230px;
+
+      @media (max-width: 2160px) {
+        transform: scale(1.5);
+        top: 36px;
+        left: 105px;
+      }
+      @media (max-width: 1670px) {
+        transform: scale(1);
+        top: -10px;
+        left: -10px;
+      }
+    }
 
     &__description {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 36px;
+      padding-top: 30px;
+
+      font-size: 2rem;
+      z-index: 2;
+
+      @media (max-width: 2160px) {
+        gap: 27px;
+        padding-top: 22px;
+        font-size: 1.5rem;
+      }
+      @media (max-width: 1670px) {
+        gap: 18px;
+        padding-top: 25px;
+        font-size: 1rem;
+      }
 
       .section {
-        width: 284px;
-
         display: flex;
         flex-direction: column;
+        gap: 2px;
 
-        gap: 1px;
+        @media (max-width: 2160px) {
+          gap: 1.5px;
+        }
+        @media (max-width: 1670px) {
+          gap: 1px;
+        }
       }
     }
   }
 
   &__content {
     display: flex;
-    gap: 100px;
-
-    width: 62.5vw;
+    justify-content: space-around;
   }
 
   &__episodes,
@@ -42,7 +96,11 @@
     display: flex;
     flex-direction: column;
 
-    width: 50%;
+    width: 500px;
+
+    @media (max-width: 1670px) {
+      width: 300px;
+    }
 
     ul {
       display: flex;
@@ -59,18 +117,40 @@
 
     &__character {
       ul {
-        height: 427px;
+        height: 424px;
 
         overflow: auto;
+
+        &::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #999;
+          border-radius: 6px;
+        }
       }
     }
   }
 
   &__episodes {
     ul {
-      height: 500px;
+      height: 497px;
 
       overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #999;
+        border-radius: 6px;
+      }
+
+      li {
+        cursor: pointer;
+      }
     }
   }
 
@@ -82,6 +162,18 @@
   }
 
   .textGray {
+    font-size: 1.75rem;
+    color: rgb(158, 158, 158);
+
+    @media (max-width: 2160px) {
+      font-size: 1.35rem;
+    }
+    @media (max-width: 1670px) {
+      font-size: 0.9rem;
+    }
+  }
+
+  .ep {
     font-size: 0.9rem;
     color: rgb(158, 158, 158);
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { fetchCardById, cardSelector } from "../redux/slices/cardSlice";
 import {
@@ -16,8 +16,7 @@ import { CardBig } from "../components/CardBig";
 
 export const Character = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { id } = location.state;
+  const { id } = useParams();
 
   const isCard = React.useRef(false);
   const isEpisodes = React.useRef(false);
@@ -66,7 +65,7 @@ export const Character = () => {
     }
 
     isCharacters.current = false;
-  }, [dispatch, fetchCharactersByUrl, episodesList]);
+  }, [dispatch, fetchCharactersByUrl, episodesList, curEpisode]);
 
   return (
     <section className="bottom__wrapper">

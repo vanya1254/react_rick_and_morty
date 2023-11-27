@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { require } from "classnames";
 
 import { StatusCircle } from "../StatusCircle";
 
@@ -18,21 +19,20 @@ export const Card = ({
   episode,
   url,
   created,
+  className,
 }) => {
+  const classNames = require("classnames");
+
   return (
-    <article className={styles.root}>
+    <article
+      className={className ? classNames(className, styles.root) : styles.root}
+    >
       <div className={styles.root__img}>
         <img src={image} alt="character" />
       </div>
       <div className={styles.root__content}>
         <div className={styles.section}>
-          <Link
-            to="/character"
-            state={{
-              id,
-            }}
-            className={styles.root__title_link}
-          >
+          <Link to={`/character/${id}`} className={styles.root__title_link}>
             <h2>{name}</h2>
           </Link>
           <span className={styles.status}>
@@ -51,7 +51,7 @@ export const Card = ({
         </div>
         <div className={styles.section}>
           <span className={styles.textGray}>First seen in:</span>
-          <a href={episode[0]} className={styles.root_link}>
+          <a href={origin.url} className={styles.root_link}>
             {origin.name}
           </a>
         </div>

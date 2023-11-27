@@ -15,10 +15,10 @@ import { charactersSelector } from "../../redux/slices/charactersSlice";
 
 export const CardBig = () => {
   const dispatch = useDispatch();
+  const classNames = require("classnames");
 
   const card = useSelector(cardSelector);
 
-  const classNames = require("classnames");
   const { episodesList, curEpisode } = useSelector(episodesSelector);
   const { charactersList } = useSelector(charactersSelector);
 
@@ -27,7 +27,7 @@ export const CardBig = () => {
   return (
     <div className={styles.root}>
       <div className={styles.root__card}>
-        <Card {...card} />
+        <Card className={styles.root__card__component} {...card} />
         <div className={styles.root__card__description}>
           <div className={styles.section}>
             <span className={styles.textGray}>Type:</span>
@@ -64,7 +64,7 @@ export const CardBig = () => {
           <h2 className={styles.root__title}>
             {episodesList[curEpisode].name}
           </h2>
-          <h4 className={classNames(styles.root__subtitle, styles.textGray)}>
+          <h4 className={classNames(styles.root__subtitle, styles.ep)}>
             {episodesList[curEpisode].episode}
           </h4>
           <article className={styles.root__episode__character}>
