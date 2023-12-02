@@ -1,24 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { require } from "classnames";
 
 import { StatusCircle } from "../StatusCircle";
 
+import { CardSliceState } from "../../redux/slices/cardSlice";
+
 import styles from "./Card.module.scss";
 
-export const Card = ({
+export const Card: React.FC<CardSliceState> = ({
   id,
   name,
   status,
   species,
-  type,
-  gender,
   origin,
   location,
   image,
-  episode,
-  url,
-  created,
   className,
 }) => {
   const classNames = require("classnames");

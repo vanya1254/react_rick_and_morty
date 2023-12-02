@@ -1,8 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { fetchCardById, cardSelector } from "../redux/slices/cardSlice";
+import { useAppDispatch } from "../redux/store";
+
+import {
+  fetchCardById,
+  cardSelector,
+  CardSliceState,
+} from "../redux/slices/cardSlice";
 import {
   episodesSelector,
   fetchEpisodesByUrl,
@@ -15,7 +21,7 @@ import {
 import { CardBig } from "../components/CardBig";
 
 export const Character = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { id } = useParams();
 
   const isCard = React.useRef(false);
@@ -27,7 +33,7 @@ export const Character = () => {
   const { status } = useSelector(charactersSelector);
 
   const getCardById = () => {
-    dispatch(fetchCardById({ id }));
+    dispatch(fetchCardById({ id: Number(id) } as CardSliceState));
   };
 
   const getEpisodesByUrl = () => {

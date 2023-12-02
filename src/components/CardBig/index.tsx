@@ -1,10 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { require } from "classnames";
 
 import { Card } from "../Card";
-
-import styles from "./CardBig.module.scss";
 
 import { cardSelector } from "../../redux/slices/cardSlice";
 import {
@@ -13,7 +10,9 @@ import {
 } from "../../redux/slices/episodesSlice";
 import { charactersSelector } from "../../redux/slices/charactersSlice";
 
-export const CardBig = () => {
+import styles from "./CardBig.module.scss";
+
+export const CardBig: React.FC = () => {
   const dispatch = useDispatch();
   const classNames = require("classnames");
 

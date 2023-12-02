@@ -1,6 +1,6 @@
 import React from "react";
 
-const CardBigSkeleton = () => {
+const CardBigSkeleton: React.FC = () => {
   return <div>CardBigSkeleton</div>;
 };
 

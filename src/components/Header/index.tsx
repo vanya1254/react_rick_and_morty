@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { require } from "classnames";
 
 import styles from "./Header.module.scss";
 
 import { Search } from "../Search";
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const classNames = require("classnames");
 
   return (
@@ -35,7 +34,7 @@ export const Header = () => {
           </li>
           <li>
             <Link
-              href="/support-us"
+              to="/support-us"
               className={classNames(styles.root__nav__link, styles.navItem)}
             >
               Support Us

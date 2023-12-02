@@ -2,7 +2,7 @@ import React from "react";
 import debounce from "lodash.debounce";
 import { useDispatch } from "react-redux";
 
-import { setSearchValue } from "../../redux/slices/filterSlice";
+import { setCurPage, setSearchValue } from "../../redux/slices/filterSlice";
 
 import styles from "./Search.module.scss";
 
@@ -12,9 +12,12 @@ export const Search = () => {
 
   const [value, setValue] = React.useState("");
 
-  const onChangeSearchValue = (value) => {
+  const onChangeSearchValue = (value: string) => {
     setValue(value);
     updateSearchValue(value);
+    if (value) {
+      dispatch(setCurPage(1));
+    }
   };
 
   const updateSearchValue = React.useCallback(

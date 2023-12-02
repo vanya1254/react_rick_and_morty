@@ -1,17 +1,19 @@
 import React from "react";
 import qs from "qs";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { setCurPage, filterSelector } from "../redux/slices/filterSlice";
+import { useAppDispatch } from "../redux/store";
+
+import { filterSelector, setFilters } from "../redux/slices/filterSlice";
 import { fetchCards, cardsSelector } from "../redux/slices/cardsSlice";
 
 import { Cards } from "../components/Cards";
 import { Pagination } from "../components/Pagination";
 
-export const Home = () => {
+export const Home: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
@@ -36,7 +38,7 @@ export const Home = () => {
     if (isMounted.current) {
       const querryString = qs.stringify({
         page: curPage,
-        name: `*${searchValue.toLowerCase()}*`,
+        name: searchValue.toLowerCase(),
       });
 
       navigate(`?${querryString}`);
@@ -47,9 +49,13 @@ export const Home = () => {
 
   React.useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const { page, name } = qs.parse(window.location.search.substring(1));
 
-      dispatch(setCurPage({ ...params }));
+      if (page && name) {
+        dispatch(
+          setFilters({ curPage: Number(page), searchValue: String(name) })
+        );
+      }
 
       isSearch.current = true;
     }

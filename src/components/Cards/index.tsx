@@ -8,7 +8,7 @@ import CardSkeleton from "../Skeletons/CardSkeleton";
 
 import styles from "./Cards.module.scss";
 
-export const Cards = () => {
+export const Cards: React.FC = () => {
   const { cardsList, status } = useSelector(cardsSelector);
 
   return (
@@ -17,7 +17,9 @@ export const Cards = () => {
         ? cardsList.map((card, id) => {
             return <Card key={id} {...card} />;
           })
-        : [...new Array(8)].map((_, i) => <CardSkeleton key={i} />)}
+        : status === "pending"
+        ? [...new Array(8)].map((_, i) => <CardSkeleton key={i} />)
+        : ""}
     </div>
   );
 };
