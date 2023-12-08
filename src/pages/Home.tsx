@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../redux/store";
 
-import { filterSelector, setFilters } from "../redux/slices/filterSlice";
-import { fetchCards, cardsSelector } from "../redux/slices/cardsSlice";
+import { setFilters } from "../redux/slices/filters/slice";
+import { filterSelector } from "../redux/slices/filters/selectors";
+
+import { fetchCards } from "../redux/slices/cards/slice";
+import { cardsSelector } from "../redux/slices/cards/selectors";
 
 import { Cards } from "../components/Cards";
 import { Pagination } from "../components/Pagination";

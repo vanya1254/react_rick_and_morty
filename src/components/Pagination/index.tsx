@@ -2,7 +2,8 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setCurPage, filterSelector } from "../../redux/slices/filterSlice";
+import { setCurPage } from "../../redux/slices/filters/slice";
+import { filterSelector } from "../../redux/slices/filters/selectors";
 
 import styles from "./Pagination.module.scss";
 

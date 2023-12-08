@@ -1,31 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { Status } from "./episodesSlice";
-import { RootState } from "../store";
-import { CardSliceState } from "./cardSlice";
-
-type FetchInfo = {
-  count: number;
-  pages: number;
-  next: string;
-  prev: null | string;
-};
-
-type FetchData = {
-  info: FetchInfo;
-  results: CardSliceState[];
-};
-
-type FetchCardsParams = {
-  activeFilters: string;
-};
-
-interface CardsSliceState {
-  cardsList: CardSliceState[];
-  status: Status;
-  pagesCount: number;
-}
+import { CardsSliceState, FetchCardsParams, FetchData } from "./types";
+import { CardSliceState } from "../cardSlice";
+import { Status } from "../episodesSlice";
 
 export const fetchCards = createAsyncThunk<CardSliceState[], FetchCardsParams>(
   "users/fetchCardsStatus",
@@ -80,8 +58,6 @@ export const cardsSlice = createSlice({
       });
   },
 });
-
-export const cardsSelector = (state: RootState) => state.cards;
 
 export const { setCardsList, setPagesCount } = cardsSlice.actions;
 

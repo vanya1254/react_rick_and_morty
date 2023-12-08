@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { cardsSelector } from "../../redux/slices/cardsSlice";
+import { cardsSelector } from "../../redux/slices/cards/selectors";
 
 import { Card } from "../Card";
 import CardSkeleton from "../Skeletons/CardSkeleton";

@@ -1,17 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
 
-interface FilterSliceState {
-  curPage: number;
-  searchValue: string;
-}
+import { FiltersSliceState } from "./types";
 
-const initialState: FilterSliceState = {
+const initialState: FiltersSliceState = {
   curPage: 1,
   searchValue: "",
 };
 
-export const filterSlice = createSlice({
+export const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
@@ -21,15 +17,13 @@ export const filterSlice = createSlice({
     setSearchValue(state, action: PayloadAction<string>) {
       state.searchValue = action.payload;
     },
-    setFilters(state, action: PayloadAction<FilterSliceState>) {
+    setFilters(state, action: PayloadAction<FiltersSliceState>) {
       state.curPage = action.payload.curPage;
       state.searchValue = action.payload.searchValue;
     },
   },
 });
 
-export const filterSelector = (state: RootState) => state.filters;
+export const { setCurPage, setSearchValue, setFilters } = filtersSlice.actions;
 
-export const { setCurPage, setSearchValue, setFilters } = filterSlice.actions;
-
-export default filterSlice.reducer;
+export default filtersSlice.reducer;
