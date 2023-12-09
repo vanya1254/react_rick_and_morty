@@ -131,3 +131,37 @@ input[type="search"]:focus {
     }
   }
 }
+
+.CardBig_skeleton {
+  display: flex;
+  flex-direction: column;
+
+  padding: 60px;
+  padding-bottom: 80px;
+  background-color: $cardColor;
+  border-radius: 120px;
+
+  @media (max-width: 2160px) {
+    border-radius: 105px;
+  }
+  @media (max-width: 1670px) {
+    border-radius: 90px;
+  }
+}
+
+.Card_skeleton {
+  display: flex;
+  flex-direction: column;
+
+  padding: 60px;
+  padding-bottom: 80px;
+  background-color: $cardColor;
+  border-radius: 120px;
+
+  @media (max-width: 2160px) {
+    border-radius: 105px;
+  }
+  @media (max-width: 1670px) {
+    border-radius: 90px;
+  }
+}

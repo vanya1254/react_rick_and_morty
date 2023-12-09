@@ -9,16 +9,24 @@ import {
   cardSelector,
   CardSliceState,
 } from "../redux/slices/cardSlice";
+// import {
+//   episodesSelector,
+//   fetchEpisodesByUrl,
+// } from "../redux/slices/episodesSlice";
+// import {
+//   fetchCharactersByUrl,
+//   charactersSelector,
+// } from "../redux/slices/charactersSlice";
+
 import {
-  episodesSelector,
-  fetchEpisodesByUrl,
-} from "../redux/slices/episodesSlice";
-import {
-  fetchCharactersByUrl,
-  charactersSelector,
-} from "../redux/slices/charactersSlice";
+  // fetchEpisodesByUrl,
+  // fetchCharactersByUrl,
+  fetchCharacter,
+} from "../redux/slices/character/slice";
+import { characterSelector } from "../redux/slices/character/selectors";
 
 import { CardBig } from "../components/CardBig";
+import CardBigSkeleton from "../components/Skeletons/CardBigSkeleton";
 
 export const Character = () => {
   const dispatch = useAppDispatch();
@@ -26,24 +34,32 @@ export const Character = () => {
 
   const isCard = React.useRef(false);
   const isEpisodes = React.useRef(false);
-  const isCharacters = React.useRef(false);
+  // const isCharacters = React.useRef(false);
 
   const { episode } = useSelector(cardSelector);
-  const { curEpisode, episodesList } = useSelector(episodesSelector);
-  const { status } = useSelector(charactersSelector);
+  // const { curEpisode, episodesList } = useSelector(episodesSelector);
+  const { status } = useSelector(characterSelector);
 
-  const getCardById = () => {
-    dispatch(fetchCardById({ id: Number(id) } as CardSliceState));
+  const getCardById = async () => {
+    await dispatch(fetchCardById({ id: Number(id) } as CardSliceState));
   };
 
-  const getEpisodesByUrl = () => {
-    dispatch(fetchEpisodesByUrl({ episode }));
+  const getCharacter = async () => {
+    // await dispatch(fetchEpisodesByUrl({ episode }));
+    // const characters = episodesList[curEpisode].characters;
+    // await dispatch(fetchCharactersByUrl({ characters }));
+
+    await dispatch(fetchCharacter({ episode }));
   };
 
-  const getCharactersByUrl = () => {
-    const characters = episodesList[curEpisode].characters;
-    dispatch(fetchCharactersByUrl({ characters }));
-  };
+  // const getEpisodesByUrl = () => {
+  //   dispatch(fetchEpisodesByUrl({ episode }));
+  // };
+
+  // const getCharactersByUrl = () => {
+  //   const characters = episodesList[curEpisode].characters;
+  //   dispatch(fetchCharactersByUrl({ characters }));
+  // };
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,31 +68,44 @@ export const Character = () => {
       getCardById();
     }
 
-    isCard.current = false;
+    isCard.current = true;
     isEpisodes.current = true;
   }, [dispatch, fetchCardById, id]);
 
   React.useEffect(() => {
     if (!isEpisodes.current) {
-      getEpisodesByUrl();
+      getCharacter();
     }
-
     isEpisodes.current = false;
-    isCharacters.current = true;
-  }, [dispatch, fetchEpisodesByUrl, episode]);
+  }, [dispatch, fetchCharacter, episode]);
 
-  React.useEffect(() => {
-    if (!isCharacters.current) {
-      getCharactersByUrl();
-    }
+  // React.useEffect(() => {
+  //   if (!isEpisodes.current) {
+  //     getEpisodesByUrl();
+  //   }
 
-    isCharacters.current = false;
-  }, [dispatch, fetchCharactersByUrl, episodesList, curEpisode]);
+  //   isEpisodes.current = false;
+  //   isCharacters.current = true;
+  // }, [dispatch, fetchEpisodesByUrl, episode]);
+
+  // React.useEffect(() => {
+  //   if (!isCharacters.current) {
+  //     getCharactersByUrl();
+  //   }
+
+  //   isCharacters.current = false;
+  // }, [dispatch, fetchCharactersByUrl, episodesList, curEpisode]);
 
   return (
     <section className="bottom__wrapper">
       <div className="bottom__inner">
-        {status === "fulfilled" ? <CardBig /> : ""}
+        {status === "fulfilled" ? (
+          <CardBig />
+        ) : status === "pending" ? (
+          <CardBigSkeleton />
+        ) : (
+          ""
+        )}
       </div>
     </section>
   );

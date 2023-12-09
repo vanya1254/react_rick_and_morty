@@ -1,27 +1,46 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Card } from "../Card";
 
 import { cardSelector } from "../../redux/slices/cardSlice";
-import {
-  episodesSelector,
-  setCurEpisode,
-} from "../../redux/slices/episodesSlice";
-import { charactersSelector } from "../../redux/slices/charactersSlice";
+// import {
+//   episodesSelector,
+//   setCurEpisode,
+// } from "../../redux/slices/episodesSlice";
+import { characterSelector } from "../../redux/slices/character/selectors";
+import { setCurEpisode } from "../../redux/slices/character/slice";
 
 import styles from "./CardBig.module.scss";
+import { fetchCharactersByUrl } from "../../redux/slices/charactersSlice";
+import { useAppDispatch } from "../../redux/store";
+
+// type CardBigProps = {
+//   onChangeEpisode: async (idx: number) => void;
+// };
 
 export const CardBig: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const classNames = require("classnames");
 
   const card = useSelector(cardSelector);
 
-  const { episodesList, curEpisode } = useSelector(episodesSelector);
-  const { charactersList } = useSelector(charactersSelector);
+  // const { episodesList, curEpisode } = useSelector(episodesSelector);
+  const { episodesList, curEpisode, charactersList } =
+    useSelector(characterSelector);
 
   // const charactersList = [{ name: 1 }, { name: 2 }, { name: 3 }];
+
+  const onClickEpisode = async (idx: number) => {
+    dispatch(setCurEpisode(idx));
+    await dispatch(
+      fetchCharactersByUrl({ characters: episodesList[curEpisode].characters })
+    );
+  };
+
+  React.useEffect(() => {
+    dispatch(setCurEpisode(0));
+  }, []);
 
   return (
     <div className={styles.root}>
@@ -52,7 +71,7 @@ export const CardBig: React.FC = () => {
               <li
                 className={curEpisode === i ? `${styles.root__active}` : ""}
                 key={episode.id}
-                onClick={() => dispatch(setCurEpisode(i))}
+                onClick={() => onClickEpisode(i)}
               >
                 {episode.name}
               </li>

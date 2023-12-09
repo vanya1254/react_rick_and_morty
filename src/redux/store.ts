@@ -6,10 +6,10 @@ import cards from "./slices/cards/slice";
 import card from "./slices/cardSlice";
 import episodes from "./slices/episodesSlice";
 import episode from "./slices/episodeSlice";
-import characters from "./slices/charactersSlice";
+import character from "./slices/character/slice";
 
 export const store = configureStore({
-  reducer: { filters, cards, card, episode, episodes, characters },
+  reducer: { filters, cards, card, episode, episodes, character },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

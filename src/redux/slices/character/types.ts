@@ -1,5 +1,3 @@
-import { Status } from "../episodesSlice";
-
 // enum OriginLocationUrl {
 //   URL = "https://rickandmortyapi.com/api/location/1",
 // }
@@ -34,7 +32,29 @@ export type CharacterType = {
   created: string;
 };
 
-export interface CharactersSliceState {
+export interface CharacterSliceState {
   charactersList: CharacterType[];
+  episodesList: EpisodeType[];
+  curEpisode: number;
   status: Status;
+}
+
+export type FetchEpisodesParams = {
+  episode: string[];
+};
+
+export type EpisodeType = {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[]; //TODO
+  url: string;
+  created: string;
+};
+
+export enum Status {
+  PENDING = "pending",
+  FULFILLED = "fulfilled",
+  REJECTED = "rejected",
 }

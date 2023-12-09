@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Status } from "./episodesSlice";
-import { RootState } from "../store";
+// import { RootState } from "../store";
 
 // enum OriginLocationUrl {
 //   URL = "https://rickandmortyapi.com/api/location/1",
@@ -88,7 +88,7 @@ export const charactersSlice = createSlice({
   },
 });
 
-export const charactersSelector = (state: RootState) => state.characters;
+// export const charactersSelector = (state: RootState) => state.characters;
 
 export const { addToCharactersList } = charactersSlice.actions;
 
