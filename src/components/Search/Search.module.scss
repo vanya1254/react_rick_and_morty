@@ -30,12 +30,13 @@
 
   &__search {
     width: 90%;
-    padding-left: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
     height: 1.75rem;
 
     border: none;
     border-radius: 8px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    // border-top-left-radius: 0;
+    // border-bottom-left-radius: 0;
   }
 }

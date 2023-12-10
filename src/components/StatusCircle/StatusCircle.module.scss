@@ -19,4 +19,12 @@
   &.grey {
     background: grey;
   }
+
+  @media (max-width: 552px) {
+    margin-right: 3.75px;
+    margin-bottom: 1.5px;
+
+    width: 6px;
+    height: 6px;
+  }
 }

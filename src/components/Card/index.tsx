@@ -47,9 +47,13 @@ export const Card: React.FC<CardSliceState> = ({
         </div>
         <div className={styles.section}>
           <span className={styles.textGray}>First seen in:</span>
-          <a href={origin.url} className={styles.root_link}>
-            {origin.name}
-          </a>
+          {origin.name === "unknown" ? (
+            <span className={styles.root_link}>{origin.name}</span>
+          ) : (
+            <a href={origin.url} className={styles.root_link}>
+              {origin.name}
+            </a>
+          )}
         </div>
       </div>
     </article>

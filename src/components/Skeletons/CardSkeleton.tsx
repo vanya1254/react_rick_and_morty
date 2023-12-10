@@ -8,8 +8,8 @@ const CardSkeleton: React.FC = (props) => {
       width={540}
       height={260}
       viewBox="0 0 540 260"
-      backgroundColor="#ffffff"
-      foregroundColor="#ded9d9"
+      backgroundColor="#bebebe"
+      foregroundColor="#ffffff"
       {...props}
     >
       <rect x="0" y="311" rx="10" ry="10" width="280" height="88" />

@@ -8,26 +8,29 @@ import styles from "./Search.module.scss";
 
 export const Search = () => {
   const dispatch = useDispatch();
-  const classNames = require("classnames");
+  // const classNames = require("classnames");
 
   const [value, setValue] = React.useState("");
 
   const onChangeSearchValue = (value: string) => {
     setValue(value);
     updateSearchValue(value);
-    if (value) {
-      dispatch(setCurPage(1));
-    }
   };
 
   const updateSearchValue = React.useCallback(
-    debounce((value) => dispatch(setSearchValue(value)), 1000),
+    debounce((value) => {
+      dispatch(setSearchValue(value));
+      dispatch(setCurPage(1));
+    }, 1000),
     []
   );
 
   return (
     <form className={styles.root}>
-      <button className={classNames(styles.root__btn, styles.search)}>
+      {/* <button
+        type="submit"
+        className={classNames(styles.root__btn, styles.search)}
+      >
         <svg
           width="1.6rem"
           height="1.6rem"
@@ -42,7 +45,7 @@ export const Search = () => {
             strokeLinejoin="round"
           />
         </svg>
-      </button>
+      </button> */}
       <input
         value={value}
         onChange={(event) => onChangeSearchValue(event.target.value)}
