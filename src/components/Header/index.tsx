@@ -32,14 +32,14 @@ export const Header: React.FC = () => {
               About
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/support-us"
               className={classNames(styles.root__nav__link, styles.navItem)}
             >
               Support Us
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>

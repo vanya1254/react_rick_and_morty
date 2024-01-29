@@ -3,16 +3,16 @@ import { useSelector } from "react-redux";
 
 import { Card } from "../Card";
 
-import { cardSelector } from "../../redux/slices/cardSlice";
+import { cardSelector } from "../../redux/slices/card/selectors";
 // import {
 //   episodesSelector,
 //   setCurEpisode,
-// } from "../../redux/slices/episodesSlice";
+// } from "../../redux/slices/episodes/slice";
 import { characterSelector } from "../../redux/slices/character/selectors";
 import { setCurEpisode } from "../../redux/slices/character/slice";
 
 import styles from "./CardBig.module.scss";
-import { fetchCharactersByUrl } from "../../redux/slices/charactersSlice";
+import { fetchCharactersByUrl } from "../../redux/slices/characters/slice";
 import { useAppDispatch } from "../../redux/store";
 
 // type CardBigProps = {

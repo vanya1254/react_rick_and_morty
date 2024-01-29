@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { StatusCircle } from "../StatusCircle";
 
-import { CardSliceState } from "../../redux/slices/cardSlice";
+import { CardSliceState } from "../../redux/slices/card/types";
 
 import styles from "./Card.module.scss";
 

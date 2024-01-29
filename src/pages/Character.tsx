@@ -4,19 +4,9 @@ import { useParams } from "react-router-dom";
 
 import { useAppDispatch } from "../redux/store";
 
-import {
-  fetchCardById,
-  cardSelector,
-  CardSliceState,
-} from "../redux/slices/cardSlice";
-// import {
-//   episodesSelector,
-//   fetchEpisodesByUrl,
-// } from "../redux/slices/episodesSlice";
-// import {
-//   fetchCharactersByUrl,
-//   charactersSelector,
-// } from "../redux/slices/charactersSlice";
+import { fetchCardById } from "../redux/slices/card/slice";
+import { CardSliceState } from "../redux/slices/card/types";
+import { cardSelector } from "../redux/slices/card/selectors";
 
 import { fetchCharacter } from "../redux/slices/character/slice";
 import { characterSelector } from "../redux/slices/character/selectors";

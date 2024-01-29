@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StatusCard } from "../../redux/slices/cardSlice";
+import { StatusCard } from "../../redux/slices/card/types";
 
 import styles from "./StatusCircle.module.scss";
 

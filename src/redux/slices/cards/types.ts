@@ -1,5 +1,4 @@
-import { CardSliceState } from "../cardSlice";
-import { Status } from "../episodesSlice";
+import { CardSliceState } from "../card/types";
 
 export type FetchInfo = {
   count: number;
@@ -21,4 +20,10 @@ export interface CardsSliceState {
   cardsList: CardSliceState[];
   status: Status;
   pagesCount: number;
+}
+
+export enum Status {
+  PENDING = "pending",
+  FULFILLED = "fulfilled",
+  REJECTED = "rejected",
 }

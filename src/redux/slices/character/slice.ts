@@ -8,7 +8,7 @@ import {
   FetchCharactersParams,
   FetchEpisodesParams,
 } from "./types";
-import { Status } from "../episodesSlice";
+import { Status } from "../cards/types";
 
 export const fetchEpisodesByUrl = createAsyncThunk<
   EpisodeType[],

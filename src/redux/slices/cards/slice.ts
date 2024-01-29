@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import { CardsSliceState, FetchCardsParams, FetchData } from "./types";
-import { CardSliceState } from "../cardSlice";
-import { Status } from "../episodesSlice";
+import { CardSliceState } from "../card/types";
+import { Status } from "../cards/types";
 
 export const fetchCards = createAsyncThunk<CardSliceState[], FetchCardsParams>(
   "users/fetchCardsStatus",

@@ -1,29 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { OriginLocationType } from "./charactersSlice";
-import { RootState } from "../store";
-
-export enum StatusCard {
-  UNKNOWN = "unknown",
-  ALIVE = "Alive",
-  DEAD = "Dead",
-}
-
-export interface CardSliceState {
-  id: number;
-  name: string;
-  status: StatusCard;
-  species: string;
-  type: string;
-  gender: string;
-  origin: OriginLocationType;
-  location: OriginLocationType;
-  image: string; //TODO
-  episode: string[]; //TODO
-  url: string; //TODO
-  created: string;
-  className?: any;
-}
+import { OriginLocationType } from "../character/types";
+import { CardSliceState, StatusCard } from "./types";
 
 export const fetchCardById = createAsyncThunk<CardSliceState, CardSliceState>(
   "items/fetchCardStatus",
@@ -137,9 +115,6 @@ export const cardSlice = createSlice({
       .addCase(fetchCardById.rejected, () => {});
   },
 });
-
-export const cardSelector = (state: RootState) => state.card;
-
 export const {
   setId,
   setName,
