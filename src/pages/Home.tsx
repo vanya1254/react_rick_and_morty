@@ -11,8 +11,7 @@ import { filterSelector } from "../redux/slices/filters/selectors";
 import { fetchCards } from "../redux/slices/cards/slice";
 import { cardsSelector } from "../redux/slices/cards/selectors";
 
-import { Cards } from "../components/Cards";
-import { Pagination } from "../components/Pagination";
+import { Cards, Pagination } from "../components/";
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();

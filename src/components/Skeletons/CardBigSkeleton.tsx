@@ -1,7 +1,7 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
-const CardBigSkeleton: React.FC = (props) => (
+export const CardBigSkeleton: React.FC = (props) => (
   <div className="CardBig_skeleton">
     <ContentLoader
       speed={3}

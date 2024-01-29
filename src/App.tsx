@@ -4,8 +4,7 @@ import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Character } from "./pages/Character";
 
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { Header, Footer } from "./components/";
 
 const App = () => {
   return (

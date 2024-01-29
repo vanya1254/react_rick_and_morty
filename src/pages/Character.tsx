@@ -11,8 +11,7 @@ import { cardSelector } from "../redux/slices/card/selectors";
 import { fetchCharacter } from "../redux/slices/character/slice";
 import { characterSelector } from "../redux/slices/character/selectors";
 
-import { CardBig } from "../components/CardBig";
-import CardBigSkeleton from "../components/Skeletons/CardBigSkeleton";
+import { CardBig, CardBigSkeleton } from "../components/";
 
 export const Character = () => {
   const dispatch = useAppDispatch();
