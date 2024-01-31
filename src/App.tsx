@@ -1,20 +1,40 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Home } from "./pages/Home";
-import { About } from "./pages/About";
-import { Character } from "./pages/Character";
 
 import { Header, Footer } from "./components/";
 
-const App = () => {
+const About = React.lazy(
+  () => import(/*webpackChunkName: "About"*/ "./pages/About")
+);
+const Character = React.lazy(
+  () => import(/*webpackChunkName: "Character"*/ "./pages/Character")
+);
+
+const App: React.FC = () => {
   return (
     <>
       <Header />
       <main className="layout__main">
         <Routes>
           <Route path="" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/character/:id" element={<Character />} />
+          <Route
+            path="/about"
+            element={
+              <React.Suspense fallback={<div>Loading ...</div>}>
+                <About />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/character/:id"
+            element={
+              <React.Suspense fallback={<div>Loading ...</div>}>
+                <Character />
+              </React.Suspense>
+            }
+          />
         </Routes>
       </main>
 

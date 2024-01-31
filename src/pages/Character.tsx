@@ -13,7 +13,7 @@ import { characterSelector } from "../redux/slices/character/selectors";
 
 import { CardBig, CardBigSkeleton } from "../components/";
 
-export const Character = () => {
+const Character: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
 
@@ -63,3 +63,5 @@ export const Character = () => {
     </section>
   );
 };
+
+export default Character;
